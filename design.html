@@ -894,6 +894,174 @@
       }
     }
 
+  
+    /* Match Animation page top spacing */
+    header {
+      margin-bottom: 58px !important;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        margin-bottom: 42px !important;
+      }
+    }
+
+  
+    /* Design page PDF presentation */
+    .design-subsection {
+      margin-bottom: 120px;
+    }
+
+    .design-subsection-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 28px;
+    }
+
+    .design-subsection-head h3 {
+      margin: 0;
+      font-size: clamp(26px, 3vw, 42px);
+      line-height: 1;
+      font-weight: 650;
+      letter-spacing: -0.05em;
+    }
+
+    .design-subsection-head p {
+      margin: 0;
+      max-width: 400px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .design-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .design-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .design-card-image {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #e7e2d9;
+      box-shadow: 0 18px 44px rgba(30,22,10,.10);
+      margin-bottom: 16px;
+    }
+
+    .design-card-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      padding: 18px;
+      transition: transform .22s ease;
+    }
+
+    .design-card:hover .design-card-image img {
+      transform: scale(1.025);
+    }
+
+    .design-open {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(243,240,234,.94);
+      color: var(--ink);
+      font-size: 12px;
+      letter-spacing: -0.01em;
+      box-shadow: 0 8px 20px rgba(20,20,20,.10);
+    }
+
+    .design-card-copy h4 {
+      margin: 7px 0 8px;
+      font-size: 21px;
+      font-weight: 650;
+      letter-spacing: -0.03em;
+    }
+
+    .design-card-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.48;
+      font-size: 14px;
+      letter-spacing: -0.015em;
+    }
+
+    .design-tags {
+      margin-top: 11px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 1000px) {
+      .design-card-grid {
+        grid-template-columns: 1fr;
+        gap: 44px;
+      }
+
+      .design-card-image {
+        aspect-ratio: 16 / 9;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .design-subsection {
+        margin-bottom: 90px;
+      }
+
+      .design-subsection-head {
+        display: block;
+      }
+
+      .design-subsection-head p {
+        margin-top: 10px;
+      }
+    }
+
+  
+    /* Design projects now mirror 3D project layout */
+    .design-piece-card {
+      display: block;
+    }
+
+    .design-piece-image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #e7e2d9;
+      box-shadow: 0 18px 44px rgba(30,22,10,.10);
+    }
+
+    .design-piece-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      padding: 20px;
+      transition: transform .22s ease;
+    }
+
+    .design-piece-card:hover .design-piece-image img {
+      transform: scale(1.015);
+    }
+
   </style>
 
 <style>
@@ -983,24 +1151,23 @@
         <p>Graphic design, layout, publication work, and illustration.</p>
       </div>
 
+
+
       <article class="model-project">
         <div class="model-project-head">
           <div>
             <div class="model-project-number">01 / PUBLICATION DESIGN</div>
             <h3>The Long Dock</h3>
-            <p class="model-project-copy">Layout and publication design for a 14-page historical booklet produced by AECOM for the Connecticut Port Authority and the State of Connecticut.</p>
+            <p class="model-project-copy">Layout and publication design for a historical booklet produced by AECOM for the Connecticut Port Authority and the State of Connecticut.</p>
           </div>
           <div class="model-tags">Layout · Publication Design · Editorial Design</div>
         </div>
-        <div class="pdf-grid">
-          <a class="pdf-card" href="CVRR_Pier_Mitigation_ver5.pdf" target="_blank">
-            <div class="pdf-preview">
-              <object data="CVRR_Pier_Mitigation_ver5.pdf#page=1&view=FitH" type="application/pdf"></object>
-              <div class="pdf-overlay">Open PDF ↗</div>
-            </div>
-            <h4>The Long Dock: A History of the Central Vermont Railway’s New London Pier</h4>
-          </a>
-        </div>
+        <a class="design-piece-card" href="CVRR_Pier_Mitigation_ver5.pdf" target="_blank">
+          <div class="design-piece-image">
+            <img src="assets/design/longdock.png" alt="The Long Dock publication cover">
+            <span class="design-open">View PDF ↗</span>
+          </div>
+        </a>
       </article>
 
       <article class="model-project">
@@ -1012,15 +1179,12 @@
           </div>
           <div class="model-tags">Exhibit Design · Layout · Information Design</div>
         </div>
-        <div class="pdf-grid">
-          <a class="pdf-card" href="IntroPanel.pdf" target="_blank">
-            <div class="pdf-preview">
-              <object data="IntroPanel.pdf#page=1&view=FitH" type="application/pdf"></object>
-              <div class="pdf-overlay">Open PDF ↗</div>
-            </div>
-            <h4>Slavery in Boston — Introductory Exhibit Panel</h4>
-          </a>
-        </div>
+        <a class="design-piece-card" href="IntroPanel.pdf" target="_blank">
+          <div class="design-piece-image">
+            <img src="assets/design/intro-panel.png" alt="Slavery in Boston exhibit panel">
+            <span class="design-open">View PDF ↗</span>
+          </div>
+        </a>
       </article>
 
       <article class="model-project">
@@ -1032,15 +1196,12 @@
           </div>
           <div class="model-tags">Editorial Design · Layout · AR / Interactive Media</div>
         </div>
-        <div class="pdf-grid">
-          <a class="pdf-card" href="vol4-final (1).pdf" target="_blank">
-            <div class="pdf-preview">
-              <object data="vol4-final (1).pdf#page=1&view=FitH" type="application/pdf"></object>
-              <div class="pdf-overlay">Open PDF ↗</div>
-            </div>
-            <h4>River Chronicles — Selected Pages</h4>
-          </a>
-        </div>
+        <a class="design-piece-card" href="vol4-final (1).pdf" target="_blank">
+          <div class="design-piece-image">
+            <img src="assets/design/river-chronicles.png" alt="River Chronicles editorial spread">
+            <span class="design-open">View PDF ↗</span>
+          </div>
+        </a>
       </article>
 
       <div class="section-title design-illustration-title">
