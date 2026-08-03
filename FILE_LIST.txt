@@ -1,0 +1,27 @@
+All user-supplied files used for the new BrettHarte.com update.
+
+3d/train/TrainRender1.png
+3d/train/TrainRender2.png
+3d/tv-studio/light_photo1.jpg
+3d/tv-studio/light_photo2.jpg
+3d/tv-studio/light_photo3.jpg
+3d/tv-studio/green_screen1.png
+3d/tv-studio/green_screen_photo1.jpg
+3d/tv-studio/green_screen_photo3.jpg
+3d/tv-studio/chair_photo1.jpg
+3d/tv-studio/chair_photo2.jpg
+3d/tv-studio/boom_mic.png
+3d/tv-studio/boom_mic2.png
+3d/scans/doll_head2.png
+3d/scans/birdwhistle.png
+3d/environments/0250.png0006.png
+3d/environments/Room.png
+3d/environments/forest_room.mp4
+illustration/IMG_4567.JPG
+illustration/IMG_6274.PNG
+illustration/snow.jpg
+illustration/elephant.jpg
+illustration/bait.jpg
+illustration/IMG_5786.PNG
+about/886538FF-83C3-4247-BB04-3DB4C009CCE1.PNG
+resume/Harte_Resume2026_update.pdf
