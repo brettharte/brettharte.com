@@ -1089,38 +1089,6 @@
       }
     }
 
-  
-    .reel-lock-inner {
-      width: min(100%, 560px);
-      text-align: center;
-    }
-
-    .reel-lock-inner h3 {
-      margin: 0 0 12px;
-      color: #fffaf0;
-      font-size: clamp(30px, 3vw, 48px);
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: -0.05em;
-    }
-
-    .reel-lock-inner > p {
-      margin: 0 0 26px;
-      color: rgba(255,250,240,.68);
-      font-size: clamp(15px, 1.4vw, 20px);
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-    }
-
-    .reel-lock-inner .reel-password-row {
-      width: 100%;
-    }
-
-    .reel-lock-inner .reel-error {
-      position: static;
-      margin-top: 12px;
-    }
-
   </style>
 
 <style>
@@ -1169,22 +1137,16 @@
     <section id="animation" class="reel" aria-label="Private Animation Reel">
       <div class="reel-frame">
         <div class="lock-screen reel-lock-screen" id="lockScreen">
-          <div class="reel-lock-inner">
-            <h3>Private Reel</h3>
-            <p>Please enter the password to view this reel.</p>
-
-            <div class="password-row reel-password-row">
-              <input
-                type="password"
-                id="passwordInput"
-                placeholder="Enter password"
-                autocomplete="off"
-              />
-              <button type="button" onclick="unlockVideo()">Watch Reel</button>
-            </div>
-
-            <div class="error reel-error" id="errorMessage">Incorrect password. Please try again.</div>
+          <div class="password-row reel-password-row">
+            <input
+              type="password"
+              id="passwordInput"
+              placeholder="Enter password"
+              autocomplete="off"
+            />
+            <button type="button" onclick="unlockVideo()">Watch Reel</button>
           </div>
+          <div class="error reel-error" id="errorMessage">Incorrect password. Please try again.</div>
         </div>
 
         <div class="video-wrap reel-video-wrap" id="videoWrap">
@@ -1268,6 +1230,32 @@
   </div>
 
   <script>
+
+    const PASSWORD = "ghost";
+
+    function unlockVideo() {
+      const input = document.getElementById("passwordInput").value;
+      const error = document.getElementById("errorMessage");
+      const lockScreen = document.getElementById("lockScreen");
+      const videoWrap = document.getElementById("videoWrap");
+      const video = videoWrap.querySelector("video");
+
+      if (input === PASSWORD) {
+        lockScreen.style.display = "none";
+        videoWrap.style.display = "block";
+        error.style.display = "none";
+        video.load();
+      } else {
+        error.style.display = "block";
+      }
+    }
+
+    document.getElementById("passwordInput").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        unlockVideo();
+      }
+    });
+
 const siteHeader = document.querySelector('header');
     const heroSection = document.querySelector('.hero, .animation-header');
     const backToTop = document.getElementById('backToTop');
