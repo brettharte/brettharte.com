@@ -119,6 +119,107 @@
       border: 0;
     }
 
+    .reel-private-lock {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: #111214;
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .reel-private-lock-inner {
+      width: min(100%, 520px);
+    }
+
+    .reel-private-lock h3 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .reel-private-lock p {
+      margin: 0 0 24px;
+      color: rgba(255,250,240,.65);
+      font-size: 15px;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+    }
+
+    .reel-password-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .reel-password-row input {
+      min-width: 0;
+      flex: 1;
+      padding: 13px 16px;
+      border: 1px solid rgba(255,250,240,.20);
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      color: var(--cream);
+      font: inherit;
+      letter-spacing: -0.02em;
+      outline: none;
+    }
+
+    .reel-password-row input::placeholder {
+      color: rgba(255,250,240,.45);
+    }
+
+    .reel-password-row button {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      background: var(--cream);
+      color: var(--dark);
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .reel-password-error {
+      display: none;
+      margin-top: 12px !important;
+      color: #e98a82 !important;
+      font-size: 13px !important;
+    }
+
+    .reel-private-video {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #111214;
+    }
+
+    @media (max-width: 600px) {
+      .reel-private-lock {
+        padding: 20px;
+      }
+
+      .reel-password-row {
+        display: block;
+      }
+
+      .reel-password-row input,
+      .reel-password-row button {
+        width: 100%;
+      }
+
+      .reel-password-row button {
+        margin-top: 10px;
+      }
+    }
+
     .reel-caption {
       display: flex;
       justify-content: space-between;
@@ -859,6 +960,18 @@
       }
     }
 
+  
+    /* Match Animation page top spacing */
+    header {
+      margin-bottom: 58px !important;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        margin-bottom: 42px !important;
+      }
+    }
+
   </style>
 
 <style>
@@ -895,22 +1008,42 @@
     </header>
 <section class="animation-header">
       <div class="section-title">
-        <h2>Animation</h2>
-        <p>Character animation, rigging, and production work across games, interactive media, and other projects.</p>
+        <h2>Animation<br>&amp; Rigging</h2>
+        <p>The main reel includes work from unpublished projects and is password protected. Please contact for access. Additional animation work can be seen below.</p>
       </div>
     </section>
-<section id="animation" class="reel" aria-label="Reel">
+<section id="animation" class="reel" aria-label="Private Animation Reel">
       <div class="reel-frame">
-        <iframe
-          src="https://player.vimeo.com/video/1064516733?autoplay=0&muted=0&loop=1&title=0&byline=0&portrait=0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
-          title="Brett Harte Reel">
-        </iframe>
+        <div class="reel-private-lock" id="reelLock">
+          <div class="reel-private-lock-inner">
+            <h3>Private Reel</h3>
+            <p>Please enter the password to view this reel.</p>
+            <div class="reel-password-row">
+              <input
+                type="password"
+                id="reelPasswordInput"
+                placeholder="Enter password"
+                autocomplete="off"
+                aria-label="Reel password">
+              <button type="button" id="reelUnlockButton">Watch Reel</button>
+            </div>
+            <p class="reel-password-error" id="reelPasswordError">Incorrect password. Please try again.</p>
+          </div>
+        </div>
+
+        <video
+          class="reel-private-video"
+          id="privateReelVideo"
+          controls
+          playsinline
+          preload="metadata"
+          title="Brett Harte Animation Reel">
+          <source src="Harte_GameReel2026_v2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
       <div class="reel-caption">
         <span><strong>Reel</strong> — animation / rigging work.</span>
-
       </div>
     </section>
 <section id="work">
@@ -983,6 +1116,29 @@
   </div>
 
   <script>
+
+    const REEL_PASSWORD = "ghost";
+    const reelLock = document.getElementById('reelLock');
+    const reelPasswordInput = document.getElementById('reelPasswordInput');
+    const reelUnlockButton = document.getElementById('reelUnlockButton');
+    const reelPasswordError = document.getElementById('reelPasswordError');
+    const privateReelVideo = document.getElementById('privateReelVideo');
+
+    const unlockPrivateReel = () => {
+      if (reelPasswordInput.value === REEL_PASSWORD) {
+        reelLock.style.display = 'none';
+        privateReelVideo.style.display = 'block';
+        reelPasswordError.style.display = 'none';
+      } else {
+        reelPasswordError.style.display = 'block';
+      }
+    };
+
+    reelUnlockButton.addEventListener('click', unlockPrivateReel);
+    reelPasswordInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter') unlockPrivateReel();
+    });
+
     const siteHeader = document.querySelector('header');
     const heroSection = document.querySelector('.hero, .animation-header');
     const backToTop = document.getElementById('backToTop');
