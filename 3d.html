@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D | Brett Harte</title>
+  <style>
+    :root {
+      --bg: #f3f0ea;
+      --ink: #141414;
+      --muted: #6f6a62;
+      --line: rgba(20,20,20,.14);
+      --dark: #111214;
+      --cream: #fffaf0;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: -0.035em;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(92vw, 1600px);
+      margin: 0 auto;
+      padding: 30px 0 80px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: clamp(120px, 18vh, 220px);
+      font-size: 18px;
+    }
+
+    .brand { font-weight: 700; }
+
+    nav {
+      display: flex;
+      gap: 34px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 120px;
+    }
+
+    .intro h1 {
+      font-size: clamp(70px, 10.8vw, 178px);
+      line-height: .84;
+      margin: 0 0 34px;
+      font-weight: 800;
+      letter-spacing: -0.085em;
+      max-width: 980px;
+    }
+
+    .intro p {
+      color: var(--muted);
+      font-size: clamp(24px, 2.2vw, 36px);
+      line-height: 1.34;
+      max-width: 760px;
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: -0.055em;
+    }
+
+    .mini {
+      border-top: 1px solid var(--line);
+      padding-top: 26px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: clamp(17px, 1.2vw, 22px);
+      max-width: 460px;
+      font-weight: 500;
+      letter-spacing: -0.035em;
+    }
+
+    .mini strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 18px;
+      font-size: clamp(18px, 1.3vw, 24px);
+      font-weight: 750;
+    }
+
+    .reel { margin-bottom: 140px; }
+
+    .reel-frame {
+      aspect-ratio: 16 / 8.2;
+      width: 100%;
+      border-radius: 28px;
+      background: #111214;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 36px 90px rgba(30, 22, 10, .22);
+    }
+
+    .reel-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .reel-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .reel-caption strong {
+      color: var(--ink);
+      font-weight: 650;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      margin-bottom: 34px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: .95;
+      margin: 0;
+      font-weight: 650;
+      letter-spacing: -0.065em;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 430px;
+      line-height: 1.45;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .work.three {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 140px;
+    }
+
+    .video-item iframe,
+    .video-item video {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 16px;
+      border: none;
+      margin-bottom: 10px;
+      background: #111214;
+      box-shadow: 0 18px 44px rgba(30, 22, 10, .13);
+      display: block;
+      object-fit: cover;
+    }
+
+    .video-item h3 {
+      margin: 0 0 5px;
+      font-size: 18px;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .video-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    /* NEW 3D MODELING SECTION */
+    .modeling {
+      margin-bottom: 140px;
+    }
+
+    .model-project {
+      margin-bottom: 92px;
+    }
+
+    .model-project:last-child {
+      margin-bottom: 0;
+    }
+
+    .model-project-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 44px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .model-project-number {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .06em;
+      font-weight: 650;
+    }
+
+    .model-project h3 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 3.6vw, 52px);
+      line-height: 1;
+      font-weight: 650;
+      letter-spacing: -0.055em;
+    }
+
+    .model-project-copy {
+      margin: 0;
+      max-width: 780px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .model-tags {
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.55;
+      font-size: 13px;
+      letter-spacing: -0.01em;
+    }
+
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .model-image {
+      grid-column: span 6;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #ddd8cf;
+      box-shadow: 0 18px 44px rgba(30, 22, 10, .11);
+      cursor: zoom-in;
+    }
+
+    .model-image.full {
+      grid-column: 1 / -1;
+    }
+
+    .model-image.third {
+      grid-column: span 4;
+    }
+
+    .model-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .model-image.contain img {
+      object-fit: contain;
+      padding: 14px;
+      background: #f8f5ef;
+    }
+
+    .model-placeholder {
+      grid-column: span 6;
+      aspect-ratio: 16 / 10;
+      border: 1px dashed rgba(20,20,20,.28);
+      border-radius: 16px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 28px;
+      background: rgba(255,255,255,.2);
+      font-size: 13px;
+      letter-spacing: .02em;
+    }
+
+    .model-placeholder.video {
+      grid-column: 1 / -1;
+      aspect-ratio: 16 / 7;
+    }
+
+    .image-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: rgba(10,10,10,.92);
+      cursor: zoom-out;
+    }
+
+    .image-lightbox.open {
+      display: flex;
+    }
+
+    .image-lightbox img {
+      max-width: 95vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 70px;
+      border-top: 1px solid var(--line);
+      padding-top: 34px;
+      margin-bottom: 130px;
+    }
+
+    .about h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: 1;
+      font-weight: 650;
+      letter-spacing: -0.065em;
+    }
+
+    .about-copy {
+      font-size: clamp(21px, 2vw, 28px);
+      line-height: 1.45;
+      color: var(--muted);
+      margin: 0;
+      max-width: 820px;
+      font-weight: 500;
+      letter-spacing: -0.045em;
+    }
+
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 30px;
+      max-width: 760px;
+    }
+
+    .tool {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: var(--muted);
+      background: rgba(255,255,255,.24);
+      font-size: 14px;
+      letter-spacing: -0.015em;
+    }
+
+    .contact {
+      background: var(--dark);
+      color: var(--cream);
+      border-radius: 28px;
+      padding: clamp(30px, 6vw, 70px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .contact h2 {
+      margin: 0 0 15px;
+      font-size: clamp(36px, 6vw, 78px);
+      line-height: .95;
+      font-weight: 650;
+      letter-spacing: -0.065em;
+    }
+
+    .contact p {
+      margin: 0;
+      color: rgba(255,250,240,.66);
+      max-width: 560px;
+      line-height: 1.5;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .button {
+      display: inline-flex;
+      border: 1px solid rgba(255,250,240,.18);
+      border-radius: 999px;
+      padding: 12px 16px;
+      color: var(--cream);
+      font-size: 14px;
+      white-space: nowrap;
+      background: rgba(255,255,255,.04);
+      letter-spacing: -0.015em;
+    }
+
+    .button.primary {
+      background: var(--cream);
+      color: var(--dark);
+      border-color: transparent;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        width: auto;
+        padding: 24px 18px 56px;
+      }
+
+      header { margin-bottom: 80px; }
+      nav { gap: 18px; }
+
+      .hero,
+      .about,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        display: block;
+        margin-bottom: 80px;
+      }
+
+      .mini {
+        display: none;
+      }
+
+      .intro h1 { font-size: clamp(64px, 19vw, 118px); }
+
+      .reel { margin-bottom: 95px; }
+
+      .reel-frame {
+        aspect-ratio: 16 / 10;
+        border-radius: 20px;
+      }
+
+      .section-title { display: block; }
+      .section-title p { margin-top: 12px; }
+
+      .work.three {
+        grid-template-columns: 1fr;
+        margin-bottom: 95px;
+      }
+
+      .modeling {
+        margin-bottom: 95px;
+      }
+
+      .model-project-head {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .model-tags {
+        text-align: left;
+      }
+
+      .model-image,
+      .model-image.third,
+      .model-placeholder {
+        grid-column: 1 / -1;
+      }
+
+      .about {
+        gap: 24px;
+        margin-bottom: 86px;
+      }
+
+      .contact-links { justify-content: flex-start; }
+    }
+
+    /* Navigation stays normal at the top, then becomes compact after the hero */
+    header {
+      position: relative;
+      top: auto;
+      z-index: 900;
+      width: 100%;
+      max-width: none;
+      margin-left: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      transition: background .2s ease, box-shadow .2s ease, padding .2s ease, border-radius .2s ease;
+    }
+
+    header .brand {
+      display: block;
+    }
+
+    header.floating {
+      position: fixed;
+      top: 16px;
+      right: 4vw;
+      left: auto;
+      width: auto;
+      padding: 10px 12px;
+      border: 1px solid rgba(20,20,20,.10);
+      border-radius: 999px;
+      background: rgba(243,240,234,.90);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(30,22,10,.08);
+    }
+
+    header.floating .brand {
+      display: none;
+    }
+
+    #animation,
+    #work,
+    #modeling,
+    #illustration,
+    #about,
+    #contact {
+      scroll-margin-top: 88px;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 899;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(20,20,20,.12);
+      border-radius: 50%;
+      background: rgba(243,240,234,.9);
+      color: var(--ink);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(30,22,10,.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: inherit;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+      header {
+        margin-bottom: 80px;
+      }
+
+      header.floating {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        overflow-x: auto;
+        justify-content: center;
+      }
+
+      header.floating nav {
+        width: 100%;
+        justify-content: center;
+      }
+
+      nav {
+        gap: 16px;
+        white-space: nowrap;
+        font-size: 15px;
+      }
+
+      .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+
+    .about-intro {
+      min-width: 0;
+    }
+
+    .about-portrait {
+      width: min(100%, 395px);
+      aspect-ratio: 1 / 1;
+      margin-top: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ddd8cf;
+      box-shadow: 0 18px 44px rgba(30, 22, 10, .10);
+    }
+
+    .about-portrait img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 36%;
+    }
+
+    @media (max-width: 900px) {
+      .about-portrait {
+        width: min(72vw, 300px);
+        margin-top: 28px;
+      }
+    }
+
+
+    .model-video {
+      grid-column: 1 / -1;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #111214;
+      box-shadow: 0 18px 44px rgba(30, 22, 10, .11);
+    }
+
+    .model-video video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #111214;
+    }
+
+
+    .illustration-section {
+      padding: 120px 4vw;
+      border-top: 1px solid rgba(20,20,20,.12);
+    }
+
+    .illustration-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 42px;
+    }
+
+    .illustration-item {
+      display: block;
+      min-height: 0;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(30,22,10,.07);
+    }
+
+    .illustration-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      transition: transform .25s ease;
+    }
+
+    .illustration-featured {
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+
+    .illustration-item:hover img {
+      transform: scale(1.015);
+    }
+
+    @media (max-width: 900px) {
+      .illustration-section {
+        padding: 80px 4vw;
+      }
+
+      .illustration-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .illustration-featured {
+        grid-row: auto;
+        grid-column: 1 / -1;
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .illustration-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .illustration-featured {
+        grid-column: auto;
+        aspect-ratio: 1 / 1;
+      }
+    }
+
+  
+    /* Illustration: intentionally mirrors the 3D section header */
+    .illustration-section {
+      padding: 0 4vw 120px !important;
+      border-top: 1px solid rgba(20,20,20,.12);
+    }
+
+    .illustration-section .modeling-intro {
+      padding-top: 48px;
+    }
+
+    .illustration-section .modeling-intro h2 {
+      margin-top: 0;
+    }
+
+    .illustration-section .illustration-grid {
+      margin-top: 42px;
+    }
+
+    @media (max-width: 900px) {
+      .illustration-section {
+        padding: 0 4vw 80px !important;
+      }
+
+      .illustration-section .modeling-intro {
+        padding-top: 36px;
+      }
+    }
+
+  
+    /* Final Illustration alignment: identical section heading system */
+    .illustration-section {
+      padding: 0 !important;
+      border-top: 0 !important;
+      margin-bottom: 140px;
+    }
+
+    .illustration-section .illustration-grid {
+      margin-top: 0;
+    }
+
+    @media (max-width: 900px) {
+      .illustration-section {
+        padding: 0 !important;
+        margin-bottom: 95px;
+      }
+    }
+
+  
+    /* All illustration thumbnails are intentionally the same size */
+    .illustration-grid {
+      align-items: stretch;
+    }
+
+    .illustration-item,
+    .illustration-featured {
+      grid-row: auto !important;
+      grid-column: auto !important;
+      aspect-ratio: 1 / 1 !important;
+    }
+
+    .illustration-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .image-lightbox {
+      position: fixed;
+    }
+
+    .image-lightbox-close {
+      position: fixed;
+      top: 22px;
+      right: 26px;
+      z-index: 1002;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 50%;
+      background: rgba(10,10,10,.72);
+      color: #fff;
+      font: inherit;
+      font-size: 31px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .image-lightbox-close:hover {
+      background: rgba(35,35,35,.92);
+    }
+
+    @media (max-width: 560px) {
+      .image-lightbox-close {
+        top: 14px;
+        right: 14px;
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+  </style>
+
+<style>
+  .subpage-main { padding-top: 0; }
+  .subpage-main > section:first-child { margin-top: 0; }
+  @media (max-width: 900px) {
+    .subpage-main { padding-top: 0; }
+  }
+</style>
+
+</head>
+<body>
+  <main class="page">
+<header>
+      <a class="brand" href="#">Brett Harte</a>
+      <nav>
+        <a href="index.html">Animation</a>
+        <a href="3d.html">3D</a>
+        <a href="design.html">Design</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+<div class="subpage-main">
+<section id="modeling" class="modeling">
+      <div class="section-title">
+        <h2>3D Modeling<br>& Production</h2>
+        <p>Production-focused 3D work across CGI, real-time VR, environment creation, and scanned asset reconstruction.</p>
+      </div>
+
+      <article class="model-project">
+        <div class="model-project-head">
+          <div>
+            <div class="model-project-number">01 / CGI MUSIC VIDEO</div>
+            <h3>Train Cars & Track</h3>
+            <p class="model-project-copy">Modeled and textured the train cars, rail system, and supporting track environment for a CGI sequence created for a music video. Assets were built with enough detail to hold up across wide shots and closer camera angles.</p>
+          </div>
+          <div class="model-tags">Blender · Modeling · Texturing · Environment Assets</div>
+        </div>
+        <div class="model-grid">
+          <a class="model-image full" href="assets/3d/train/TrainRender1.png">
+            <img src="assets/3d/train/TrainRender1.png" alt="3D modeled train cars and track">
+          </a>
+          <a class="model-image full" href="assets/3d/train/TrainRender2.png">
+            <img src="assets/3d/train/TrainRender2.png" alt="Side view of modeled train car and track">
+          </a>
+        </div>
+      </article>
+
+      <article class="model-project">
+        <div class="model-project-head">
+          <div>
+            <div class="model-project-number">02 / VR GAME ENVIRONMENT</div>
+            <h3>TV Studio Props</h3>
+            <p class="model-project-copy">Modeled and textured a collection of production assets for a television studio environment built for a VR game. The set included studio lighting, green-screen equipment, a director’s chair, and a boom microphone for use in a real-time environment.</p>
+          </div>
+          <div class="model-tags">3D Modeling · Texturing · Environment Props · VR / Real-Time</div>
+        </div>
+        <div class="model-grid">
+          <a class="model-image full" href="assets/3d/tv-studio/green_screen1.png">
+            <img src="assets/3d/tv-studio/green_screen1.png" alt="Textured green screen rig for VR television studio">
+          </a>
+
+          <a class="model-image third" href="assets/3d/tv-studio/light_photo1.jpg"><img src="assets/3d/tv-studio/light_photo1.jpg" alt="Studio light model"></a>
+          <a class="model-image third" href="assets/3d/tv-studio/light_photo2.jpg"><img src="assets/3d/tv-studio/light_photo2.jpg" alt="Studio light model alternate angle"></a>
+          <a class="model-image third" href="assets/3d/tv-studio/light_photo3.jpg"><img src="assets/3d/tv-studio/light_photo3.jpg" alt="Studio light model detail"></a>
+
+          <a class="model-image" href="assets/3d/tv-studio/green_screen_photo3.jpg"><img src="assets/3d/tv-studio/green_screen_photo3.jpg" alt="Green screen rig clay render"></a>
+          <a class="model-image" href="assets/3d/tv-studio/green_screen_photo1.jpg"><img src="assets/3d/tv-studio/green_screen_photo1.jpg" alt="Green screen rig alternate clay render"></a>
+
+          <a class="model-image" href="assets/3d/tv-studio/chair_photo1.jpg"><img src="assets/3d/tv-studio/chair_photo1.jpg" alt="Director chair model"></a>
+          <a class="model-image" href="assets/3d/tv-studio/chair_photo2.jpg"><img src="assets/3d/tv-studio/chair_photo2.jpg" alt="Director chair model alternate view"></a>
+
+          <a class="model-image contain" href="assets/3d/tv-studio/boom_mic.png"><img src="assets/3d/tv-studio/boom_mic.png" alt="Textured boom microphone model"></a>
+          <a class="model-image contain" href="assets/3d/tv-studio/boom_mic2.png"><img src="assets/3d/tv-studio/boom_mic2.png" alt="Boom microphone model alternate view"></a>
+        </div>
+      </article>
+
+      <article class="model-project">
+        <div class="model-project-head">
+          <div>
+            <div class="model-project-number">03 / MUSIC VIDEO</div>
+            <h3>Forest & Bedroom Environments</h3>
+            <p class="model-project-copy">Created stylized 3D environments for a music video, including forest and bedroom settings. The environments were intentionally simple in design, using composition, lighting, and environmental elements to establish the look and atmosphere of each scene.</p>
+          </div>
+          <div class="model-tags">3D Modeling · Environment Design · Lighting · CGI</div>
+        </div>
+        <div class="model-grid">
+          <div class="model-video">
+            <video controls muted playsinline preload="auto" onvolumechange="this.muted=true; this.volume=0;">
+              <source src="assets/3d/environments/forest-room.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <a class="model-image" href="assets/3d/environments/forest.png">
+            <img src="assets/3d/environments/forest.png" alt="Stylized 3D forest environment created for a music video">
+          </a>
+          <a class="model-image" href="assets/3d/environments/bedroom.png">
+            <img src="assets/3d/environments/bedroom.png" alt="Stylized 3D bedroom environment created for a music video">
+          </a>
+        </div>
+      </article>
+
+      <article class="model-project">
+        <div class="model-project-head">
+          <div>
+            <div class="model-project-number">04 / 3D SCANNING</div>
+            <h3>Scanned Artifact Reconstruction</h3>
+            <p class="model-project-copy">Processed 3D-scanned objects into cleaned, presentation-ready assets. Refined the scan geometry, corrected problem areas, and cleaned and restored the textures while preserving the character and surface detail of the original objects.</p>
+          </div>
+          <div class="model-tags">3D Scanning · Mesh Cleanup · Texture Cleanup · Asset Production</div>
+        </div>
+        <div class="model-grid">
+          <a class="model-image contain" href="assets/3d/scans/doll_head2.png">
+            <img src="assets/3d/scans/doll_head2.png" alt="Cleaned and textured 3D scan of ceramic doll head">
+          </a>
+          <a class="model-image contain" href="assets/3d/scans/birdwhistle.png">
+            <img src="assets/3d/scans/birdwhistle.png" alt="Cleaned and textured 3D scan of bird whistle artifact">
+          </a>
+        </div>
+      </article>
+    </section>
+    <!-- NEW CONTENT ENDS HERE. -->
+
+
+    
+</div>
+<section id="contact" class="contact">
+      <div>
+        <h2>Let’s talk.</h2>
+        <p>If you’re working on something and think I’d be a good fit, feel free to reach out.</p>
+      </div>
+
+      <div class="contact-links">
+        <a class="button primary" href="mailto:brett.s.harte@gmail.com" target="_blank">Email</a>
+        <a class="button" href="https://www.linkedin.com/in/brettharte/" target="_blank">LinkedIn</a>
+        <a class="button" href="Harte_Resume2026.pdf" download target="_blank">Resume</a>
+      </div>
+    </section>
+
+
+  </main>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
+  <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+    <button class="image-lightbox-close" id="imageLightboxClose" aria-label="Close image">×</button>
+    <img id="imageLightboxImage" alt="">
+  </div>
+
+  <script>
+    const siteHeader = document.querySelector('header');
+    const heroSection = document.querySelector('.hero');
+    const backToTop = document.getElementById('backToTop');
+
+    const updateFloatingNav = () => {
+      const trigger = heroSection ? heroSection.offsetTop + heroSection.offsetHeight - 40 : 240;
+      siteHeader.classList.toggle('floating', window.scrollY > trigger);
+    };
+
+    updateFloatingNav();
+
+
+    window.addEventListener('scroll', () => {
+      updateFloatingNav();
+      backToTop.classList.toggle('visible', window.scrollY > 700);
+    });
+
+    window.addEventListener('resize', updateFloatingNav);
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const imageLightbox = document.getElementById('imageLightbox');
+    const imageLightboxImage = document.getElementById('imageLightboxImage');
+
+    document.querySelectorAll('.model-image[href], .illustration-item[href]').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        imageLightboxImage.src = link.href;
+        imageLightbox.classList.add('open');
+        imageLightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    const imageLightboxClose = document.getElementById('imageLightboxClose');
+
+    const closeImageLightbox = () => {
+      imageLightbox.classList.remove('open');
+      imageLightbox.setAttribute('aria-hidden', 'true');
+      imageLightboxImage.src = '';
+    };
+
+    imageLightboxClose.addEventListener('click', closeImageLightbox);
+
+    imageLightbox.addEventListener('click', event => {
+      if (event.target === imageLightbox) {
+        closeImageLightbox();
+      }
+    });
+
+    imageLightboxImage.addEventListener('click', event => {
+      event.stopPropagation();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        closeImageLightbox();
+      }
+    });
+  </script>
+
+</body>
+</html>
