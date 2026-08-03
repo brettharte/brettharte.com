@@ -778,6 +778,64 @@
       }
     }
 
+  
+    /* All illustration thumbnails are intentionally the same size */
+    .illustration-grid {
+      align-items: stretch;
+    }
+
+    .illustration-item,
+    .illustration-featured {
+      grid-row: auto !important;
+      grid-column: auto !important;
+      aspect-ratio: 1 / 1 !important;
+    }
+
+    .illustration-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .image-lightbox {
+      position: fixed;
+    }
+
+    .image-lightbox-close {
+      position: fixed;
+      top: 22px;
+      right: 26px;
+      z-index: 1002;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 50%;
+      background: rgba(10,10,10,.72);
+      color: #fff;
+      font: inherit;
+      font-size: 31px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .image-lightbox-close:hover {
+      background: rgba(35,35,35,.92);
+    }
+
+    @media (max-width: 560px) {
+      .image-lightbox-close {
+        top: 14px;
+        right: 14px;
+        width: 44px;
+        height: 44px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -851,12 +909,15 @@
 
         <div class="video-item">
           <video
-            src="CupsCupsCups.mov"
             controls
             loop
             muted
             playsinline
+            preload="metadata"
             title="TV Animation">
+            <source src="cupscupscups.mp4" type="video/mp4">
+            <source src="cupscupscups.mov" type="video/quicktime">
+            Your browser does not support this video format.
           </video>
           <h3>TV Animation</h3>
           <p>Animation and simulation work created for a live-action television production.</p>
@@ -930,7 +991,7 @@
         </div>
         <div class="model-grid">
           <div class="model-video">
-            <video controls muted playsinline preload="metadata" poster="assets/3d/environments/forest.png">
+            <video controls muted playsinline preload="auto">
               <source src="assets/3d/environments/forest-room.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -973,7 +1034,7 @@
       </div>
 
       <div class="illustration-grid">
-        <a class="illustration-item illustration-featured" href="assets/illustration/bulldog.jpg">
+        <a class="illustration-item" href="assets/illustration/bulldog.jpg">
           <img src="assets/illustration/bulldog.jpg" alt="Illustrated portrait of a white bulldog">
         </a>
         <a class="illustration-item" href="assets/illustration/snow-cabin.jpg">
@@ -1030,7 +1091,8 @@
 
   <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
 
-  <div class="image-lightbox" id="imageLightbox">
+  <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+    <button class="image-lightbox-close" id="imageLightboxClose" aria-label="Close image">×</button>
     <img id="imageLightboxImage" alt="">
   </div>
 
@@ -1061,21 +1123,38 @@
     const imageLightbox = document.getElementById('imageLightbox');
     const imageLightboxImage = document.getElementById('imageLightboxImage');
 
-    document.querySelectorAll('.model-image[href]').forEach(link => {
+    document.querySelectorAll('.model-image[href], .illustration-item[href]').forEach(link => {
       link.addEventListener('click', event => {
         event.preventDefault();
         imageLightboxImage.src = link.href;
         imageLightbox.classList.add('open');
+        imageLightbox.setAttribute('aria-hidden', 'false');
       });
     });
 
-    imageLightbox.addEventListener('click', () => {
+    const imageLightboxClose = document.getElementById('imageLightboxClose');
+
+    const closeImageLightbox = () => {
       imageLightbox.classList.remove('open');
+      imageLightbox.setAttribute('aria-hidden', 'true');
+      imageLightboxImage.src = '';
+    };
+
+    imageLightboxClose.addEventListener('click', closeImageLightbox);
+
+    imageLightbox.addEventListener('click', event => {
+      if (event.target === imageLightbox) {
+        closeImageLightbox();
+      }
+    });
+
+    imageLightboxImage.addEventListener('click', event => {
+      event.stopPropagation();
     });
 
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape') {
-        imageLightbox.classList.remove('open');
+        closeImageLightbox();
       }
     });
   </script>
