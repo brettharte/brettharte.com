@@ -848,6 +848,31 @@
       }
     }
 
+  
+    /* Interactive Sketchfab artifact viewers */
+    .artifact-sketchfab-grid .sketchfab-embed-wrapper {
+      grid-column: span 6;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #111214;
+      box-shadow: 0 18px 44px rgba(30,22,10,.11);
+    }
+
+    .artifact-sketchfab-grid .sketchfab-embed-wrapper iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 900px) {
+      .artifact-sketchfab-grid .sketchfab-embed-wrapper {
+        grid-column: 1 / -1;
+      }
+    }
+
   </style>
 
 <style>
@@ -960,13 +985,26 @@
           </div>
           <div class="model-tags">3D Scanning · Mesh Cleanup · Texture Cleanup · Asset Production</div>
         </div>
-        <div class="model-grid">
-          <a class="model-image contain" href="assets/3d/scans/doll_head2.png">
-            <img src="assets/3d/scans/doll_head2.png" alt="Cleaned and textured 3D scan of ceramic doll head">
-          </a>
-          <a class="model-image contain" href="assets/3d/scans/birdwhistle.png">
-            <img src="assets/3d/scans/birdwhistle.png" alt="Cleaned and textured 3D scan of bird whistle artifact">
-          </a>
+        <div class="model-grid artifact-sketchfab-grid">
+          <div class="sketchfab-embed-wrapper">
+            <iframe
+              title="Dolly Madison Style Doll Head"
+              frameborder="0"
+              allowfullscreen
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              src="https://sketchfab.com/models/f2400ed60594411e844f82981ae5ed0d/embed">
+            </iframe>
+          </div>
+
+          <div class="sketchfab-embed-wrapper">
+            <iframe
+              title="Staffordshire Bird Whistle"
+              frameborder="0"
+              allowfullscreen
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              src="https://sketchfab.com/models/c661d368220b4fd790fbfb1835bcf945/embed">
+            </iframe>
+          </div>
         </div>
       </article>
     </section>
