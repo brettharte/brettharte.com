@@ -991,7 +991,7 @@
         </div>
         <div class="model-grid">
           <div class="model-video">
-            <video controls muted playsinline preload="auto">
+            <video controls muted playsinline preload="auto" onvolumechange="this.muted=true; this.volume=0;">
               <source src="assets/3d/environments/forest-room.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
