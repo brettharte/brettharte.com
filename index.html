@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brett Harte — Portfolio</title>
+  <title>Brett Harte</title>
   <style>
     :root {
       --bg: #f3f0ea;
@@ -836,34 +836,70 @@
       }
     }
 
+  
+    .animation-header {
+      margin-bottom: 34px;
+    }
+
+    @media (max-width: 900px) {
+      .animation-header {
+        margin-bottom: 28px;
+      }
+    }
+
+  
+    /* Tighten the space between the top nav and Animation heading */
+    header {
+      margin-bottom: 58px !important;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        margin-bottom: 42px !important;
+      }
+    }
+
   </style>
+
+<style>
+  .subpage-main { padding-top: 0; }
+  .subpage-main > section:first-child { margin-top: 0; }
+  @media (max-width: 900px) {
+    .subpage-main { padding-top: 0; }
+  }
+
+    .animation-header {
+      margin-bottom: 34px;
+    }
+
+    @media (max-width: 900px) {
+      .animation-header {
+        margin-bottom: 28px;
+      }
+    }
+
+  </style>
+
 </head>
 <body>
   <main class="page">
-    <header>
-      <a class="brand" href="#">Brett Harte</a>
+<header>
+      <a class="brand" href="about.html">Brett Harte</a>
       <nav>
-        <a href="#animation">Animation</a>
-        <a href="#modeling">3D</a>
-        <a href="#illustration">Illustrations</a>
-        <a href="#about">About</a>
+        <a href="index.html">Animation</a>
+        <a href="3d.html">3D</a>
+        <a href="design.html">Design</a>
+        <a href="about.html">About</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
-
-    <section class="hero">
-      <div class="intro">
-        <h1>Animator &<br>3D Artist</h1>
-        <p>I make things in 3D. Sometimes they move. Sometimes they need bones first.</p>
+<section class="animation-header">
+      <div class="section-title">
+        <h2>Animation</h2>
+        <p>Character animation, rigging, and production work across games, interactive media, and other projects.</p>
       </div>
-
-      <aside class="mini">
-        <strong>Philadelphia, PA</strong>
-        Animator, 3D artist, and creative technologist with 10+ years across animation, interactive media, and 3D production.
-      </aside>
     </section>
-
-    <section id="animation" class="reel" aria-label="Reel">
+<section id="animation" class="reel" aria-label="Reel">
       <div class="reel-frame">
         <iframe
           src="https://player.vimeo.com/video/1064516733?autoplay=0&muted=0&loop=1&title=0&byline=0&portrait=0"
@@ -877,8 +913,7 @@
 
       </div>
     </section>
-
-    <section id="work">
+<section id="work">
       <div class="section-title">
         <h2>Animation Pieces</h2>
         <p>A selection of animation work across character, game, and production projects. </p>
@@ -924,158 +959,7 @@
         </div>
       </div>
     </section>
-
-    <!-- NEW CONTENT STARTS HERE. Everything above is the original site. -->
-    <section id="modeling" class="modeling">
-      <div class="section-title">
-        <h2>3D Modeling<br>& Production</h2>
-        <p>Production-focused 3D work across CGI, real-time VR, environment creation, and scanned asset reconstruction.</p>
-      </div>
-
-      <article class="model-project">
-        <div class="model-project-head">
-          <div>
-            <div class="model-project-number">01 / CGI MUSIC VIDEO</div>
-            <h3>Train Cars & Track</h3>
-            <p class="model-project-copy">Modeled and textured the train cars, rail system, and supporting track environment for a CGI sequence created for a music video. Assets were built with enough detail to hold up across wide shots and closer camera angles.</p>
-          </div>
-          <div class="model-tags">Blender · Modeling · Texturing · Environment Assets</div>
-        </div>
-        <div class="model-grid">
-          <a class="model-image full" href="assets/3d/train/TrainRender1.png">
-            <img src="assets/3d/train/TrainRender1.png" alt="3D modeled train cars and track">
-          </a>
-          <a class="model-image full" href="assets/3d/train/TrainRender2.png">
-            <img src="assets/3d/train/TrainRender2.png" alt="Side view of modeled train car and track">
-          </a>
-        </div>
-      </article>
-
-      <article class="model-project">
-        <div class="model-project-head">
-          <div>
-            <div class="model-project-number">02 / VR GAME ENVIRONMENT</div>
-            <h3>TV Studio Props</h3>
-            <p class="model-project-copy">Modeled and textured a collection of production assets for a television studio environment built for a VR game. The set included studio lighting, green-screen equipment, a director’s chair, and a boom microphone for use in a real-time environment.</p>
-          </div>
-          <div class="model-tags">3D Modeling · Texturing · Environment Props · VR / Real-Time</div>
-        </div>
-        <div class="model-grid">
-          <a class="model-image full" href="assets/3d/tv-studio/green_screen1.png">
-            <img src="assets/3d/tv-studio/green_screen1.png" alt="Textured green screen rig for VR television studio">
-          </a>
-
-          <a class="model-image third" href="assets/3d/tv-studio/light_photo1.jpg"><img src="assets/3d/tv-studio/light_photo1.jpg" alt="Studio light model"></a>
-          <a class="model-image third" href="assets/3d/tv-studio/light_photo2.jpg"><img src="assets/3d/tv-studio/light_photo2.jpg" alt="Studio light model alternate angle"></a>
-          <a class="model-image third" href="assets/3d/tv-studio/light_photo3.jpg"><img src="assets/3d/tv-studio/light_photo3.jpg" alt="Studio light model detail"></a>
-
-          <a class="model-image" href="assets/3d/tv-studio/green_screen_photo3.jpg"><img src="assets/3d/tv-studio/green_screen_photo3.jpg" alt="Green screen rig clay render"></a>
-          <a class="model-image" href="assets/3d/tv-studio/green_screen_photo1.jpg"><img src="assets/3d/tv-studio/green_screen_photo1.jpg" alt="Green screen rig alternate clay render"></a>
-
-          <a class="model-image" href="assets/3d/tv-studio/chair_photo1.jpg"><img src="assets/3d/tv-studio/chair_photo1.jpg" alt="Director chair model"></a>
-          <a class="model-image" href="assets/3d/tv-studio/chair_photo2.jpg"><img src="assets/3d/tv-studio/chair_photo2.jpg" alt="Director chair model alternate view"></a>
-
-          <a class="model-image contain" href="assets/3d/tv-studio/boom_mic.png"><img src="assets/3d/tv-studio/boom_mic.png" alt="Textured boom microphone model"></a>
-          <a class="model-image contain" href="assets/3d/tv-studio/boom_mic2.png"><img src="assets/3d/tv-studio/boom_mic2.png" alt="Boom microphone model alternate view"></a>
-        </div>
-      </article>
-
-      <article class="model-project">
-        <div class="model-project-head">
-          <div>
-            <div class="model-project-number">03 / MUSIC VIDEO</div>
-            <h3>Forest & Bedroom Environments</h3>
-            <p class="model-project-copy">Created stylized 3D environments for a music video, including forest and bedroom settings. The environments were intentionally simple in design, using composition, lighting, and environmental elements to establish the look and atmosphere of each scene.</p>
-          </div>
-          <div class="model-tags">3D Modeling · Environment Design · Lighting · CGI</div>
-        </div>
-        <div class="model-grid">
-          <div class="model-video">
-            <video controls muted playsinline preload="auto" onvolumechange="this.muted=true; this.volume=0;">
-              <source src="assets/3d/environments/forest-room.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <a class="model-image" href="assets/3d/environments/forest.png">
-            <img src="assets/3d/environments/forest.png" alt="Stylized 3D forest environment created for a music video">
-          </a>
-          <a class="model-image" href="assets/3d/environments/bedroom.png">
-            <img src="assets/3d/environments/bedroom.png" alt="Stylized 3D bedroom environment created for a music video">
-          </a>
-        </div>
-      </article>
-
-      <article class="model-project">
-        <div class="model-project-head">
-          <div>
-            <div class="model-project-number">04 / 3D SCANNING</div>
-            <h3>Scanned Artifact Reconstruction</h3>
-            <p class="model-project-copy">Processed 3D-scanned objects into cleaned, presentation-ready assets. Refined the scan geometry, corrected problem areas, and cleaned and restored the textures while preserving the character and surface detail of the original objects.</p>
-          </div>
-          <div class="model-tags">3D Scanning · Mesh Cleanup · Texture Cleanup · Asset Production</div>
-        </div>
-        <div class="model-grid">
-          <a class="model-image contain" href="assets/3d/scans/doll_head2.png">
-            <img src="assets/3d/scans/doll_head2.png" alt="Cleaned and textured 3D scan of ceramic doll head">
-          </a>
-          <a class="model-image contain" href="assets/3d/scans/birdwhistle.png">
-            <img src="assets/3d/scans/birdwhistle.png" alt="Cleaned and textured 3D scan of bird whistle artifact">
-          </a>
-        </div>
-      </article>
-    </section>
-    <!-- NEW CONTENT ENDS HERE. -->
-
-
-    <section id="illustration" class="illustration-section">
-      <div class="section-title">
-        <h2>Illustrations</h2>
-        <p>A small selection of illustration and character work.</p>
-      </div>
-
-      <div class="illustration-grid">
-        <a class="illustration-item" href="assets/illustration/bulldog.jpg">
-          <img src="assets/illustration/bulldog.jpg" alt="Illustrated portrait of a white bulldog">
-        </a>
-        <a class="illustration-item" href="assets/illustration/snow-cabin.jpg">
-          <img src="assets/illustration/snow-cabin.jpg" alt="Black and white illustration of a cabin beneath a dark sky">
-        </a>
-        <a class="illustration-item" href="assets/illustration/anglerfish.jpg">
-          <img src="assets/illustration/anglerfish.jpg" alt="Black and white anglerfish illustration">
-        </a>
-        <a class="illustration-item" href="assets/illustration/crystal-ball.png">
-          <img src="assets/illustration/crystal-ball.png" alt="Crystal ball and tarot card illustration">
-        </a>
-        <a class="illustration-item" href="assets/illustration/elephant.jpg">
-          <img src="assets/illustration/elephant.jpg" alt="Blue elephant character illustration">
-        </a>
-        <a class="illustration-item" href="assets/illustration/character-design.png">
-          <img src="assets/illustration/character-design.png" alt="Stylized character design illustration">
-        </a>
-      </div>
-    </section>
-
-    <section id="about" class="about">
-      <div class="about-intro">
-        <h2>About</h2>
-        <div class="about-portrait">
-          <img src="assets/about/brett-harte-portrait.png" alt="Portrait of Brett Harte">
-        </div>
-      </div>
-      <div>
-                <p class="about-copy">
-          Brett Harte is a Philadelphia-based animator and 3D artist with more than 10 years of experience working across animation, interactive media, games, and digital production. His work tends to live somewhere between the creative and technical sides of a project, from character animation and rigging to 3D modeling, real-time experiences, and tools designed to make production a little easier.
-          <br><br>
-          His interest in that overlap goes back to his education. Brett studied New Media at Penn State Abington before earning an M.S. in Digital Media from Drexel University. While at Drexel, his graduate thesis explored how traditional principles of animation could be applied to interaction in virtual reality, specifically examining the use of exaggeration as a way of communicating and reinforcing user interaction. He later continued his character animation training through AnimSchool.
-          <br><br>
-          Professionally, Brett has worked on projects ranging from character and creature animation for games to interactive applications, VR experiences, 3D environments, modeling, rigging, and technical art. Over the years, he has also become increasingly interested in the systems behind the work, building tools and workflows in Blender and Unity when the existing process could be faster or more reliable.
-          <br><br>
-          His approach to most projects is pretty simple: make things that look good, move well, and work the way they’re supposed to. Sometimes that means animating a character, sometimes it means building the thing the character is standing next to, and sometimes it means figuring out why none of it is working in the engine.
-        </p>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
+<section id="contact" class="contact">
       <div>
         <h2>Let’s talk.</h2>
         <p>If you’re working on something and think I’d be a good fit, feel free to reach out.</p>
@@ -1087,6 +971,8 @@
         <a class="button" href="Harte_Resume2026.pdf" download target="_blank">Resume</a>
       </div>
     </section>
+
+
   </main>
 
   <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
@@ -1098,11 +984,11 @@
 
   <script>
     const siteHeader = document.querySelector('header');
-    const heroSection = document.querySelector('.hero');
+    const heroSection = document.querySelector('.hero, .animation-header');
     const backToTop = document.getElementById('backToTop');
 
     const updateFloatingNav = () => {
-      const trigger = heroSection.offsetTop + heroSection.offsetHeight - 40;
+      const trigger = heroSection ? heroSection.offsetTop + heroSection.offsetHeight - 40 : 240;
       siteHeader.classList.toggle('floating', window.scrollY > trigger);
     };
 
@@ -1158,5 +1044,6 @@
       }
     });
   </script>
+
 </body>
 </html>
