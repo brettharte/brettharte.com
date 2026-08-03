@@ -196,6 +196,141 @@
       letter-spacing: -0.02em;
     }
 
+    /* NEW 3D MODELING SECTION */
+    .modeling {
+      margin-bottom: 140px;
+    }
+
+    .model-project {
+      margin-bottom: 92px;
+    }
+
+    .model-project:last-child {
+      margin-bottom: 0;
+    }
+
+    .model-project-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 44px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .model-project-number {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .06em;
+      font-weight: 650;
+    }
+
+    .model-project h3 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 3.6vw, 52px);
+      line-height: 1;
+      font-weight: 650;
+      letter-spacing: -0.055em;
+    }
+
+    .model-project-copy {
+      margin: 0;
+      max-width: 780px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .model-tags {
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.55;
+      font-size: 13px;
+      letter-spacing: -0.01em;
+    }
+
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .model-image {
+      grid-column: span 6;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #ddd8cf;
+      box-shadow: 0 18px 44px rgba(30, 22, 10, .11);
+      cursor: zoom-in;
+    }
+
+    .model-image.full {
+      grid-column: 1 / -1;
+    }
+
+    .model-image.third {
+      grid-column: span 4;
+    }
+
+    .model-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .model-image.contain img {
+      object-fit: contain;
+      padding: 14px;
+      background: #f8f5ef;
+    }
+
+    .model-placeholder {
+      grid-column: span 6;
+      aspect-ratio: 16 / 10;
+      border: 1px dashed rgba(20,20,20,.28);
+      border-radius: 16px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 28px;
+      background: rgba(255,255,255,.2);
+      font-size: 13px;
+      letter-spacing: .02em;
+    }
+
+    .model-placeholder.video {
+      grid-column: 1 / -1;
+      aspect-ratio: 16 / 7;
+    }
+
+    .image-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: rgba(10,10,10,.92);
+      cursor: zoom-out;
+    }
+
+    .image-lightbox.open {
+      display: flex;
+    }
+
+    .image-lightbox img {
+      max-width: 95vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
     .about {
       display: grid;
       grid-template-columns: .75fr 1.25fr;
@@ -310,8 +445,12 @@
       }
 
       .hero {
-        gap: 42px;
+        display: block;
         margin-bottom: 80px;
+      }
+
+      .mini {
+        display: none;
       }
 
       .intro h1 { font-size: clamp(64px, 19vw, 118px); }
@@ -331,6 +470,25 @@
         margin-bottom: 95px;
       }
 
+      .modeling {
+        margin-bottom: 95px;
+      }
+
+      .model-project-head {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .model-tags {
+        text-align: left;
+      }
+
+      .model-image,
+      .model-image.third,
+      .model-placeholder {
+        grid-column: 1 / -1;
+      }
+
       .about {
         gap: 24px;
         margin-bottom: 86px;
@@ -338,6 +496,288 @@
 
       .contact-links { justify-content: flex-start; }
     }
+
+    /* Navigation stays normal at the top, then becomes compact after the hero */
+    header {
+      position: relative;
+      top: auto;
+      z-index: 900;
+      width: 100%;
+      max-width: none;
+      margin-left: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      transition: background .2s ease, box-shadow .2s ease, padding .2s ease, border-radius .2s ease;
+    }
+
+    header .brand {
+      display: block;
+    }
+
+    header.floating {
+      position: fixed;
+      top: 16px;
+      right: 4vw;
+      left: auto;
+      width: auto;
+      padding: 10px 12px;
+      border: 1px solid rgba(20,20,20,.10);
+      border-radius: 999px;
+      background: rgba(243,240,234,.90);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(30,22,10,.08);
+    }
+
+    header.floating .brand {
+      display: none;
+    }
+
+    #animation,
+    #work,
+    #modeling,
+    #illustration,
+    #about,
+    #contact {
+      scroll-margin-top: 88px;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 899;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(20,20,20,.12);
+      border-radius: 50%;
+      background: rgba(243,240,234,.9);
+      color: var(--ink);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(30,22,10,.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: inherit;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+      header {
+        margin-bottom: 80px;
+      }
+
+      header.floating {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        overflow-x: auto;
+        justify-content: center;
+      }
+
+      header.floating nav {
+        width: 100%;
+        justify-content: center;
+      }
+
+      nav {
+        gap: 16px;
+        white-space: nowrap;
+        font-size: 15px;
+      }
+
+      .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+
+    .about-intro {
+      min-width: 0;
+    }
+
+    .about-portrait {
+      width: min(100%, 395px);
+      aspect-ratio: 1 / 1;
+      margin-top: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ddd8cf;
+      box-shadow: 0 18px 44px rgba(30, 22, 10, .10);
+    }
+
+    .about-portrait img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 36%;
+    }
+
+    @media (max-width: 900px) {
+      .about-portrait {
+        width: min(72vw, 300px);
+        margin-top: 28px;
+      }
+    }
+
+
+    .model-video {
+      grid-column: 1 / -1;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #111214;
+      box-shadow: 0 18px 44px rgba(30, 22, 10, .11);
+    }
+
+    .model-video video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #111214;
+    }
+
+
+    .illustration-section {
+      padding: 120px 4vw;
+      border-top: 1px solid rgba(20,20,20,.12);
+    }
+
+    .illustration-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 42px;
+    }
+
+    .illustration-item {
+      display: block;
+      min-height: 0;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(30,22,10,.07);
+    }
+
+    .illustration-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      transition: transform .25s ease;
+    }
+
+    .illustration-featured {
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+
+    .illustration-item:hover img {
+      transform: scale(1.015);
+    }
+
+    @media (max-width: 900px) {
+      .illustration-section {
+        padding: 80px 4vw;
+      }
+
+      .illustration-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .illustration-featured {
+        grid-row: auto;
+        grid-column: 1 / -1;
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .illustration-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .illustration-featured {
+        grid-column: auto;
+        aspect-ratio: 1 / 1;
+      }
+    }
+
+  
+    /* Illustration: intentionally mirrors the 3D section header */
+    .illustration-section {
+      padding: 0 4vw 120px !important;
+      border-top: 1px solid rgba(20,20,20,.12);
+    }
+
+    .illustration-section .modeling-intro {
+      padding-top: 48px;
+    }
+
+    .illustration-section .modeling-intro h2 {
+      margin-top: 0;
+    }
+
+    .illustration-section .illustration-grid {
+      margin-top: 42px;
+    }
+
+    @media (max-width: 900px) {
+      .illustration-section {
+        padding: 0 4vw 80px !important;
+      }
+
+      .illustration-section .modeling-intro {
+        padding-top: 36px;
+      }
+    }
+
+  
+    /* Final Illustration alignment: identical section heading system */
+    .illustration-section {
+      padding: 0 !important;
+      border-top: 0 !important;
+      margin-bottom: 140px;
+    }
+
+    .illustration-section .illustration-grid {
+      margin-top: 0;
+    }
+
+    @media (max-width: 900px) {
+      .illustration-section {
+        padding: 0 !important;
+        margin-bottom: 95px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -345,7 +785,9 @@
     <header>
       <a class="brand" href="#">Brett Harte</a>
       <nav>
-        <a href="#work">Work</a>
+        <a href="#animation">Animation</a>
+        <a href="#modeling">3D</a>
+        <a href="#illustration">Illustrations</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -353,17 +795,17 @@
 
     <section class="hero">
       <div class="intro">
-        <h1>Artist, Animator<br>& Rigger</h1>
-        <p>I can give characters bones and make them move.</p>
+        <h1>Animator &<br>3D Artist</h1>
+        <p>I make things in 3D. Sometimes they move. Sometimes they need bones first.</p>
       </div>
 
       <aside class="mini">
         <strong>Philadelphia, PA</strong>
-        10+ years across animation, interactive media, graphic design, and 3D production.
+        Animator, 3D artist, and creative technologist with 10+ years across animation, interactive media, and 3D production.
       </aside>
     </section>
 
-    <section class="reel" aria-label="Reel">
+    <section id="animation" class="reel" aria-label="Reel">
       <div class="reel-frame">
         <iframe
           src="https://player.vimeo.com/video/1064516733?autoplay=0&muted=0&loop=1&title=0&byline=0&portrait=0"
@@ -374,14 +816,14 @@
       </div>
       <div class="reel-caption">
         <span><strong>Reel</strong> — animation / rigging work.</span>
-        
+
       </div>
     </section>
 
     <section id="work">
       <div class="section-title">
-        <h2>Selected Work</h2>
-        <p>A selection of projects showcasing character animation, rigging, and production workflow. </p>
+        <h2>Animation Pieces</h2>
+        <p>A selection of animation work across character, game, and production projects. </p>
       </div>
 
       <div class="work three">
@@ -393,7 +835,7 @@
             title="Character Animation">
           </iframe>
           <h3>Character Animation</h3>
-          <p>Short-form animation work including characters, props, and environments — modeled, rigged, textured, and animated on my end.</p>
+          <p>Short-form animation work including characters, props, and environments — modeled, rigged, and animated.</p>
         </div>
 
         <div class="video-item">
@@ -409,7 +851,7 @@
 
         <div class="video-item">
           <video
-            src="cupscupscups.mp4"
+            src="CupsCupsCups.mov"
             controls
             loop
             muted
@@ -422,28 +864,153 @@
       </div>
     </section>
 
-    <section id="about" class="about">
-      <h2>About</h2>
-      <div>
-        <p class="about-copy">
-          I’m a Philadelphia based animator and rigger with about 10 years of experience working across animation, interactive media, graphic design, and 3D production.
-          <br><br>
-          I like keeping things simple & solid. If it looks good and works, I’m happy.
-        </p>
+    <!-- NEW CONTENT STARTS HERE. Everything above is the original site. -->
+    <section id="modeling" class="modeling">
+      <div class="section-title">
+        <h2>3D Modeling<br>& Production</h2>
+        <p>Production-focused 3D work across CGI, real-time VR, environment creation, and scanned asset reconstruction.</p>
+      </div>
 
-        <div class="tools">
-          <span class="tool">Blender</span>
-          <span class="tool">Maya</span>
-          <span class="tool">Unity</span>
-          <span class="tool">Rigging</span>
-          
-          <span class="tool">Character Animation</span>
-          <span class="tool">Creature Animation</span>
-          <span class="tool">Graphic Design</span>
-          <span class="tool">Interactive Media</span>
-          <span class="tool">AR / VR</span>
-          <span class="tool">Adobe Creative Suite</span>
+      <article class="model-project">
+        <div class="model-project-head">
+          <div>
+            <div class="model-project-number">01 / CGI MUSIC VIDEO</div>
+            <h3>Train Cars & Track</h3>
+            <p class="model-project-copy">Modeled and textured the train cars, rail system, and supporting track environment for a CGI sequence created for a music video. Assets were built with enough detail to hold up across wide shots and closer camera angles.</p>
+          </div>
+          <div class="model-tags">Blender · Modeling · Texturing · Environment Assets</div>
         </div>
+        <div class="model-grid">
+          <a class="model-image full" href="assets/3d/train/TrainRender1.png">
+            <img src="assets/3d/train/TrainRender1.png" alt="3D modeled train cars and track">
+          </a>
+          <a class="model-image full" href="assets/3d/train/TrainRender2.png">
+            <img src="assets/3d/train/TrainRender2.png" alt="Side view of modeled train car and track">
+          </a>
+        </div>
+      </article>
+
+      <article class="model-project">
+        <div class="model-project-head">
+          <div>
+            <div class="model-project-number">02 / VR GAME ENVIRONMENT</div>
+            <h3>TV Studio Props</h3>
+            <p class="model-project-copy">Modeled and textured a collection of production assets for a television studio environment built for a VR game. The set included studio lighting, green-screen equipment, a director’s chair, and a boom microphone for use in a real-time environment.</p>
+          </div>
+          <div class="model-tags">3D Modeling · Texturing · Environment Props · VR / Real-Time</div>
+        </div>
+        <div class="model-grid">
+          <a class="model-image full" href="assets/3d/tv-studio/green_screen1.png">
+            <img src="assets/3d/tv-studio/green_screen1.png" alt="Textured green screen rig for VR television studio">
+          </a>
+
+          <a class="model-image third" href="assets/3d/tv-studio/light_photo1.jpg"><img src="assets/3d/tv-studio/light_photo1.jpg" alt="Studio light model"></a>
+          <a class="model-image third" href="assets/3d/tv-studio/light_photo2.jpg"><img src="assets/3d/tv-studio/light_photo2.jpg" alt="Studio light model alternate angle"></a>
+          <a class="model-image third" href="assets/3d/tv-studio/light_photo3.jpg"><img src="assets/3d/tv-studio/light_photo3.jpg" alt="Studio light model detail"></a>
+
+          <a class="model-image" href="assets/3d/tv-studio/green_screen_photo3.jpg"><img src="assets/3d/tv-studio/green_screen_photo3.jpg" alt="Green screen rig clay render"></a>
+          <a class="model-image" href="assets/3d/tv-studio/green_screen_photo1.jpg"><img src="assets/3d/tv-studio/green_screen_photo1.jpg" alt="Green screen rig alternate clay render"></a>
+
+          <a class="model-image" href="assets/3d/tv-studio/chair_photo1.jpg"><img src="assets/3d/tv-studio/chair_photo1.jpg" alt="Director chair model"></a>
+          <a class="model-image" href="assets/3d/tv-studio/chair_photo2.jpg"><img src="assets/3d/tv-studio/chair_photo2.jpg" alt="Director chair model alternate view"></a>
+
+          <a class="model-image contain" href="assets/3d/tv-studio/boom_mic.png"><img src="assets/3d/tv-studio/boom_mic.png" alt="Textured boom microphone model"></a>
+          <a class="model-image contain" href="assets/3d/tv-studio/boom_mic2.png"><img src="assets/3d/tv-studio/boom_mic2.png" alt="Boom microphone model alternate view"></a>
+        </div>
+      </article>
+
+      <article class="model-project">
+        <div class="model-project-head">
+          <div>
+            <div class="model-project-number">03 / MUSIC VIDEO</div>
+            <h3>Forest & Bedroom Environments</h3>
+            <p class="model-project-copy">Created stylized 3D environments for a music video, including forest and bedroom settings. The environments were intentionally simple in design, using composition, lighting, and environmental elements to establish the look and atmosphere of each scene.</p>
+          </div>
+          <div class="model-tags">3D Modeling · Environment Design · Lighting · CGI</div>
+        </div>
+        <div class="model-grid">
+          <div class="model-video">
+            <video controls muted playsinline preload="metadata" poster="assets/3d/environments/forest.png">
+              <source src="assets/3d/environments/forest-room.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <a class="model-image" href="assets/3d/environments/forest.png">
+            <img src="assets/3d/environments/forest.png" alt="Stylized 3D forest environment created for a music video">
+          </a>
+          <a class="model-image" href="assets/3d/environments/bedroom.png">
+            <img src="assets/3d/environments/bedroom.png" alt="Stylized 3D bedroom environment created for a music video">
+          </a>
+        </div>
+      </article>
+
+      <article class="model-project">
+        <div class="model-project-head">
+          <div>
+            <div class="model-project-number">04 / 3D SCANNING</div>
+            <h3>Scanned Artifact Reconstruction</h3>
+            <p class="model-project-copy">Processed 3D-scanned objects into cleaned, presentation-ready assets. Refined the scan geometry, corrected problem areas, and cleaned and restored the textures while preserving the character and surface detail of the original objects.</p>
+          </div>
+          <div class="model-tags">3D Scanning · Mesh Cleanup · Texture Cleanup · Asset Production</div>
+        </div>
+        <div class="model-grid">
+          <a class="model-image contain" href="assets/3d/scans/doll_head2.png">
+            <img src="assets/3d/scans/doll_head2.png" alt="Cleaned and textured 3D scan of ceramic doll head">
+          </a>
+          <a class="model-image contain" href="assets/3d/scans/birdwhistle.png">
+            <img src="assets/3d/scans/birdwhistle.png" alt="Cleaned and textured 3D scan of bird whistle artifact">
+          </a>
+        </div>
+      </article>
+    </section>
+    <!-- NEW CONTENT ENDS HERE. -->
+
+
+    <section id="illustration" class="illustration-section">
+      <div class="section-title">
+        <h2>Illustrations</h2>
+        <p>A small selection of illustration and character work.</p>
+      </div>
+
+      <div class="illustration-grid">
+        <a class="illustration-item illustration-featured" href="assets/illustration/bulldog.jpg">
+          <img src="assets/illustration/bulldog.jpg" alt="Illustrated portrait of a white bulldog">
+        </a>
+        <a class="illustration-item" href="assets/illustration/snow-cabin.jpg">
+          <img src="assets/illustration/snow-cabin.jpg" alt="Black and white illustration of a cabin beneath a dark sky">
+        </a>
+        <a class="illustration-item" href="assets/illustration/anglerfish.jpg">
+          <img src="assets/illustration/anglerfish.jpg" alt="Black and white anglerfish illustration">
+        </a>
+        <a class="illustration-item" href="assets/illustration/crystal-ball.png">
+          <img src="assets/illustration/crystal-ball.png" alt="Crystal ball and tarot card illustration">
+        </a>
+        <a class="illustration-item" href="assets/illustration/elephant.jpg">
+          <img src="assets/illustration/elephant.jpg" alt="Blue elephant character illustration">
+        </a>
+        <a class="illustration-item" href="assets/illustration/character-design.png">
+          <img src="assets/illustration/character-design.png" alt="Stylized character design illustration">
+        </a>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-intro">
+        <h2>About</h2>
+        <div class="about-portrait">
+          <img src="assets/about/brett-harte-portrait.png" alt="Portrait of Brett Harte">
+        </div>
+      </div>
+      <div>
+                <p class="about-copy">
+          Brett Harte is a Philadelphia-based animator and 3D artist with more than 10 years of experience working across animation, interactive media, games, and digital production. His work tends to live somewhere between the creative and technical sides of a project, from character animation and rigging to 3D modeling, real-time experiences, and tools designed to make production a little easier.
+          <br><br>
+          His interest in that overlap goes back to his education. Brett studied New Media at Penn State Abington before earning an M.S. in Digital Media from Drexel University. While at Drexel, his graduate thesis explored how traditional principles of animation could be applied to interaction in virtual reality, specifically examining the use of exaggeration as a way of communicating and reinforcing user interaction. He later continued his character animation training through AnimSchool.
+          <br><br>
+          Professionally, Brett has worked on projects ranging from character and creature animation for games to interactive applications, VR experiences, 3D environments, modeling, rigging, and technical art. Over the years, he has also become increasingly interested in the systems behind the work, building tools and workflows in Blender and Unity when the existing process could be faster or more reliable.
+          <br><br>
+          His approach to most projects is pretty simple: make things that look good, move well, and work the way they’re supposed to. Sometimes that means animating a character, sometimes it means building the thing the character is standing next to, and sometimes it means figuring out why none of it is working in the engine.
+        </p>
       </div>
     </section>
 
@@ -460,5 +1027,57 @@
       </div>
     </section>
   </main>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
+  <div class="image-lightbox" id="imageLightbox">
+    <img id="imageLightboxImage" alt="">
+  </div>
+
+  <script>
+    const siteHeader = document.querySelector('header');
+    const heroSection = document.querySelector('.hero');
+    const backToTop = document.getElementById('backToTop');
+
+    const updateFloatingNav = () => {
+      const trigger = heroSection.offsetTop + heroSection.offsetHeight - 40;
+      siteHeader.classList.toggle('floating', window.scrollY > trigger);
+    };
+
+    updateFloatingNav();
+
+
+    window.addEventListener('scroll', () => {
+      updateFloatingNav();
+      backToTop.classList.toggle('visible', window.scrollY > 700);
+    });
+
+    window.addEventListener('resize', updateFloatingNav);
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const imageLightbox = document.getElementById('imageLightbox');
+    const imageLightboxImage = document.getElementById('imageLightboxImage');
+
+    document.querySelectorAll('.model-image[href]').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        imageLightboxImage.src = link.href;
+        imageLightbox.classList.add('open');
+      });
+    });
+
+    imageLightbox.addEventListener('click', () => {
+      imageLightbox.classList.remove('open');
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        imageLightbox.classList.remove('open');
+      }
+    });
+  </script>
 </body>
 </html>
